@@ -22,11 +22,35 @@ jobs:
       with:
         go-version: ${{ matrix.go-version }}
 
-    - name: Build
+    - name: Build Core
       run: go build -v ./...
 
-    - name: Test
+    - name: Test Core
       run: go test -v -race -coverprofile=coverage.out ./...
+
+    - name: Build Gin Adapter
+      run: |
+        cd adapters/gin
+        go mod tidy
+        go build .
+
+    - name: Build Fiber Adapter
+      run: |
+        cd adapters/fiber
+        go mod tidy
+        go build .
+
+    - name: Build Echo Adapter
+      run: |
+        cd adapters/echo
+        go mod tidy
+        go build .
+
+    - name: Build Chi Adapter
+      run: |
+        cd adapters/chi
+        go mod tidy
+        go build .
 
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v4

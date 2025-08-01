@@ -6,7 +6,7 @@ A framework-agnostic Go module for generating RSS and Atom feeds. Inspired by [p
 
 ## Features
 
-- **Framework-agnostic**: Use with Gin, Echo, Fiber, Chi, or standard net/http
+- **Framework-agnostic**: Use with Gin, Echo, Fiber, Chi, or standard net/http (adapters available separately)
 - **Multiple formats**: RSS 2.0 and Atom 1.0 support
 - **Rich content**: Support for images, enclosures, categories, and custom elements
 - **Modern Go**: Type-safe, extensible, and robust (Go 1.22+)
@@ -29,8 +29,28 @@ A framework-agnostic Go module for generating RSS and Atom feeds. Inspired by [p
 
 ## Installation
 
+### Core Library
+
 ```bash
 go get github.com/rumendamyanov/go-feed
+```
+
+### Framework Adapters (Optional)
+
+Each framework adapter is a separate module. Install only what you need:
+
+```bash
+# For Gin
+go get github.com/rumendamyanov/go-feed/adapters/gin
+
+# For Echo  
+go get github.com/rumendamyanov/go-feed/adapters/echo
+
+# For Fiber  
+go get github.com/rumendamyanov/go-feed/adapters/fiber
+
+# For Chi
+go get github.com/rumendamyanov/go-feed/adapters/chi
 ```
 
 ## Usage
@@ -127,6 +147,8 @@ atomData, _ := f.Atom()  // Atom 1.0
 
 ## Framework Adapters
 
+Framework adapters are separate modules to keep the core library dependency-free. Install only the adapters you need.
+
 ### Gin Example
 
 ```go
@@ -151,6 +173,33 @@ func main() {
     }))
 
     r.Run(":8080")
+}
+```
+
+### Fiber Example
+
+```go
+package main
+
+import (
+    "github.com/gofiber/fiber/v2"
+    "github.com/rumendamyanov/go-feed/adapters/fiber"
+)
+
+func main() {
+    app := fiber.New()
+
+    app.Get("/feed.xml", fiberadapter.Feed(func() *feed.Feed {
+        f := feed.New()
+        f.SetTitle("My Site")
+        f.AddItem(feed.Item{
+            Title: "Hello World",
+            Link:  "https://example.com/hello",
+        })
+        return f
+    }))
+
+    app.Listen(":8080")
 }
 ```
 
@@ -181,20 +230,22 @@ func main() {
 }
 ```
 
-### Fiber Example
+### Chi Example
 
 ```go
 package main
 
 import (
-    "github.com/gofiber/fiber/v2"
-    "github.com/rumendamyanov/go-feed/adapters/fiber"
+    "net/http"
+
+    "github.com/go-chi/chi/v5"
+    "github.com/rumendamyanov/go-feed/adapters/chi"
 )
 
 func main() {
-    app := fiber.New()
+    r := chi.NewRouter()
 
-    app.Get("/feed.xml", fiberadapter.Feed(func() *feed.Feed {
+    r.Get("/feed.xml", chiadapter.Feed(func() *feed.Feed {
         f := feed.New()
         f.SetTitle("My Site")
         f.AddItem(feed.Item{
@@ -204,7 +255,7 @@ func main() {
         return f
     }))
 
-    app.Listen(":8080")
+    http.ListenAndServe(":8080", r)
 }
 ```
 
