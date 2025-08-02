@@ -316,3 +316,232 @@ func TestAtomGeneration(t *testing.T) {
 		t.Error("Atom should contain entry summary")
 	}
 }
+
+func TestAdvancedFeedProperties(t *testing.T) {
+	f := New()
+
+	// Test Copyright
+	f.SetCopyright("© 2025 Test Company")
+	if f.GetCopyright() != "© 2025 Test Company" {
+		t.Errorf("Expected copyright '© 2025 Test Company', got '%s'", f.GetCopyright())
+	}
+
+	// Test Managing Editor
+	f.SetManagingEditor("editor@example.com (News Editor)")
+	if f.GetManagingEditor() != "editor@example.com (News Editor)" {
+		t.Errorf("Expected managing editor 'editor@example.com (News Editor)', got '%s'", f.GetManagingEditor())
+	}
+
+	// Test Webmaster
+	f.SetWebmaster("webmaster@example.com (Web Master)")
+	if f.GetWebmaster() != "webmaster@example.com (Web Master)" {
+		t.Errorf("Expected webmaster 'webmaster@example.com (Web Master)', got '%s'", f.GetWebmaster())
+	}
+
+	// Test TTL
+	f.SetTTL(60)
+	if f.GetTTL() != 60 {
+		t.Errorf("Expected TTL 60, got %d", f.GetTTL())
+	}
+
+	// Test LastBuildDate
+	testTime := time.Date(2025, 1, 1, 12, 0, 0, 0, time.UTC)
+	f.SetLastBuildDate(testTime)
+	if !f.GetLastBuildDate().Equal(testTime) {
+		t.Errorf("Expected last build date %v, got %v", testTime, f.GetLastBuildDate())
+	}
+}
+
+func TestFeedImageGetSet(t *testing.T) {
+	f := New()
+
+	// Test setting and getting image
+	testImage := Image{
+		URL:    "https://example.com/logo.png",
+		Title:  "Example Logo",
+		Link:   "https://example.com",
+		Width:  100,
+		Height: 50,
+	}
+
+	f.SetImage(testImage)
+	image := f.GetImage()
+
+	if image.URL != testImage.URL {
+		t.Errorf("Expected image URL '%s', got '%s'", testImage.URL, image.URL)
+	}
+	if image.Title != testImage.Title {
+		t.Errorf("Expected image title '%s', got '%s'", testImage.Title, image.Title)
+	}
+	if image.Link != testImage.Link {
+		t.Errorf("Expected image link '%s', got '%s'", testImage.Link, image.Link)
+	}
+	if image.Width != testImage.Width {
+		t.Errorf("Expected image width %d, got %d", testImage.Width, image.Width)
+	}
+	if image.Height != testImage.Height {
+		t.Errorf("Expected image height %d, got %d", testImage.Height, image.Height)
+	}
+}
+
+func TestCustomElements(t *testing.T) {
+	f := New()
+
+	// Test adding namespaces
+	f.AddNamespace("custom", "http://example.com/custom")
+	f.AddNamespace("media", "http://search.yahoo.com/mrss/")
+
+	// Test adding custom elements
+	f.AddCustomElement("custom:element", "test value")
+	f.AddCustomElement("media:thumbnail", map[string]string{"url": "https://example.com/thumb.jpg"})
+
+	// Verify the methods can be chained
+	result := f.AddNamespace("test", "http://test.com").AddCustomElement("test:element", "value")
+	if result != f {
+		t.Error("AddNamespace and AddCustomElement should return the same feed instance for chaining")
+	}
+
+	// Basic verification that we can create RSS/Atom with custom elements present
+	// (even if they're not rendered yet - that would be a future enhancement)
+	f.SetTitle("Custom Elements Test")
+	f.SetDescription("Testing custom elements")
+	f.SetLink("https://example.com")
+
+	_, err := f.RSS()
+	if err != nil {
+		t.Errorf("RSS generation should work even with custom elements present: %v", err)
+	}
+
+	_, err = f.Atom()
+	if err != nil {
+		t.Errorf("Atom generation should work even with custom elements present: %v", err)
+	}
+}
+
+func TestAdvancedFeedInRSSOutput(t *testing.T) {
+	f := New()
+	f.SetTitle("Advanced Test Feed")
+	f.SetDescription("Testing advanced features")
+	f.SetLink("https://example.com")
+	f.SetCopyright("© 2025 Test Corp")
+	f.SetManagingEditor("editor@test.com (Test Editor)")
+	f.SetWebmaster("web@test.com (Test Webmaster)")
+	f.SetTTL(120)
+
+	testTime := time.Date(2025, 1, 15, 10, 30, 0, 0, time.UTC)
+	f.SetLastBuildDate(testTime)
+
+	f.SetImage(Image{
+		URL:    "https://example.com/logo.png",
+		Title:  "Test Logo",
+		Link:   "https://example.com",
+		Width:  144,
+		Height: 72,
+	})
+
+	// Generate RSS
+	rss, err := f.RSS()
+	if err != nil {
+		t.Fatalf("Error generating RSS: %v", err)
+	}
+
+	rssString := string(rss)
+
+	// Test advanced elements appear in RSS
+	if !strings.Contains(rssString, "<copyright>© 2025 Test Corp</copyright>") {
+		t.Error("RSS should contain copyright")
+	}
+	if !strings.Contains(rssString, "<managingEditor>editor@test.com (Test Editor)</managingEditor>") {
+		t.Error("RSS should contain managing editor")
+	}
+	if !strings.Contains(rssString, "<webMaster>web@test.com (Test Webmaster)</webMaster>") {
+		t.Error("RSS should contain webmaster")
+	}
+	if !strings.Contains(rssString, "<ttl>120</ttl>") {
+		t.Error("RSS should contain TTL")
+	}
+	if !strings.Contains(rssString, "<lastBuildDate>15 Jan 25 10:30 UTC</lastBuildDate>") {
+		t.Error("RSS should contain last build date")
+	}
+
+	// Test image elements
+	if !strings.Contains(rssString, "<url>https://example.com/logo.png</url>") {
+		t.Error("RSS should contain image URL")
+	}
+	if !strings.Contains(rssString, "<title>Test Logo</title>") {
+		t.Error("RSS should contain image title")
+	}
+	if !strings.Contains(rssString, "<width>144</width>") {
+		t.Error("RSS should contain image width")
+	}
+	if !strings.Contains(rssString, "<height>72</height>") {
+		t.Error("RSS should contain image height")
+	}
+}
+
+func TestEdgeCases(t *testing.T) {
+	f := New()
+
+	// Test empty feed validation
+	err := f.Validate()
+	if err == nil {
+		t.Error("Expected validation error for empty feed")
+	}
+
+	// Test minimal valid feed
+	f.SetTitle("Test")
+	f.SetDescription("Test Description")
+	f.SetLink("https://example.com")
+
+	err = f.Validate()
+	if err != nil {
+		t.Errorf("Validation should pass for minimal valid feed: %v", err)
+	}
+
+	// Test RSS generation with minimal feed
+	rss, err := f.RSS()
+	if err != nil {
+		t.Errorf("RSS generation should work with minimal feed: %v", err)
+	}
+	if len(rss) == 0 {
+		t.Error("RSS output should not be empty")
+	}
+
+	// Test Atom generation with minimal feed
+	atom, err := f.Atom()
+	if err != nil {
+		t.Errorf("Atom generation should work with minimal feed: %v", err)
+	}
+	if len(atom) == 0 {
+		t.Error("Atom output should not be empty")
+	}
+}
+
+func TestFeedChaining(t *testing.T) {
+	f := New()
+
+	// Test that all setters can be chained
+	result := f.SetTitle("Chain Test").
+		SetDescription("Testing method chaining").
+		SetLink("https://example.com").
+		SetLanguage("en-us").
+		SetCopyright("© 2025 Test").
+		SetManagingEditor("editor@test.com").
+		SetWebmaster("web@test.com").
+		SetTTL(60)
+
+	if result != f {
+		t.Error("All setters should return the same feed instance for chaining")
+	}
+
+	// Verify all values were set correctly
+	if f.GetTitle() != "Chain Test" {
+		t.Error("Title should be set correctly in chain")
+	}
+	if f.GetCopyright() != "© 2025 Test" {
+		t.Error("Copyright should be set correctly in chain")
+	}
+	if f.GetTTL() != 60 {
+		t.Error("TTL should be set correctly in chain")
+	}
+}

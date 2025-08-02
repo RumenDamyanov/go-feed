@@ -1,6 +1,7 @@
 package feed
 
 import (
+	"strings"
 	"testing"
 	"time"
 )
@@ -301,4 +302,129 @@ func findSubstring(s, substr string) int {
 		}
 	}
 	return -1
+}
+
+func TestItemValidation(t *testing.T) {
+	f := New()
+	f.SetTitle("Test Feed")
+	f.SetDescription("Test Description")
+	f.SetLink("https://example.com")
+
+	// Test item with all fields
+	completeItem := Item{
+		Title:       "Complete Item",
+		Description: "Complete item with all fields",
+		Link:        "https://example.com/item",
+		Author:      "author@example.com (Test Author)",
+		PubDate:     time.Now(),
+		GUID:        "https://example.com/item",
+		Categories:  []string{"test", "complete"},
+		Enclosure: &Enclosure{
+			URL:    "https://example.com/file.mp3",
+			Length: "1024",
+			Type:   "audio/mpeg",
+		},
+		Images: []Image{
+			{
+				URL:    "https://example.com/image.jpg",
+				Title:  "Test Image",
+				Link:   "https://example.com/item",
+				Width:  100,
+				Height: 100,
+			},
+		},
+	}
+
+	f.AddItem(completeItem)
+
+	// Test RSS generation with complete item
+	rss, err := f.RSS()
+	if err != nil {
+		t.Fatalf("RSS generation failed: %v", err)
+	}
+
+	rssString := string(rss)
+	if !strings.Contains(rssString, "Complete Item") {
+		t.Error("RSS should contain item title")
+	}
+	if !strings.Contains(rssString, "audio/mpeg") {
+		t.Error("RSS should contain enclosure type")
+	}
+
+	// Test Atom generation with complete item
+	atom, err := f.Atom()
+	if err != nil {
+		t.Fatalf("Atom generation failed: %v", err)
+	}
+
+	atomString := string(atom)
+	if !strings.Contains(atomString, "Complete Item") {
+		t.Error("Atom should contain item title")
+	}
+}
+
+func TestEmptyValues(t *testing.T) {
+	f := New()
+
+	// Test with empty values
+	f.SetTitle("")
+	f.SetDescription("")
+	f.SetLink("")
+
+	if f.GetTitle() != "" {
+		t.Error("Empty title should remain empty")
+	}
+	if f.GetDescription() != "" {
+		t.Error("Empty description should remain empty")
+	}
+	if f.GetLink() != "" {
+		t.Error("Empty link should remain empty")
+	}
+
+	// Test validation with empty values
+	err := f.Validate()
+	if err == nil {
+		t.Error("Validation should fail for feed with empty required fields")
+	}
+}
+
+func TestZeroTime(t *testing.T) {
+	f := New()
+	f.SetTitle("Test Feed")
+	f.SetDescription("Test Description")
+	f.SetLink("https://example.com")
+
+	// Test with zero time values
+	zeroTime := time.Time{}
+	f.SetLastBuildDate(zeroTime)
+
+	item := Item{
+		Title:   "Test Item",
+		Link:    "https://example.com/item",
+		PubDate: zeroTime,
+	}
+	f.AddItem(item)
+
+	// RSS should handle zero times gracefully
+	rss, err := f.RSS()
+	if err != nil {
+		t.Fatalf("RSS generation failed with zero time: %v", err)
+	}
+
+	// Should not contain empty date elements
+	rssString := string(rss)
+	if strings.Contains(rssString, "<pubDate></pubDate>") {
+		t.Error("RSS should not contain empty pubDate elements")
+	}
+
+	// Atom should handle zero times gracefully
+	atom, err := f.Atom()
+	if err != nil {
+		t.Fatalf("Atom generation failed with zero time: %v", err)
+	}
+
+	atomString := string(atom)
+	if strings.Contains(atomString, "<published></published>") {
+		t.Error("Atom should not contain empty published elements")
+	}
 }
