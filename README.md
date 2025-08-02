@@ -1,6 +1,12 @@
 # go-feed
 
-[![CI](https://github.com/rumendamyanov/go-feed/actions/workflows/ci.yml/badge.svg)](https://github.com/rumendamyanov/go-feed/actions/workflows/ci.yml) [![codecov](https://codecov.io/gh/rumendamyanov/go-feed/branch/master/graph/badge.svg)](https://codecov.io/gh/rumendamyanov/go-feed) [![Go Report Card](https://goreportcard.com/badge/github.com/rumendamyanov/go-feed)](https://goreportcard.com/report/github.com/rumendamyanov/go-feed) [![Go Reference](https://pkg.go.dev/badge/github.com/rumendamyanov/go-feed.svg)](https://pkg.go.dev/github.com/rumendamyanov/go-feed) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/rumendamyanov/go-feed/blob/master/LICENSE.md)
+[![CI](https://github.com/rumendamyanov/go-feed/actions/workflows/ci.yml/badge.svg)](https://github.com/rumendamyanov/go-feed/actions/workflows/ci.yml)
+![CodeQL](https://github.com/rumendamyanov/go-feed/actions/workflows/github-code-scanning/codeql/badge.svg)
+![Dependabot](https://github.com/rumendamyanov/go-feed/actions/workflows/dependabot/dependabot-updates/badge.svg)
+[![codecov](https://codecov.io/gh/rumendamyanov/go-feed/branch/master/graph/badge.svg)](https://codecov.io/gh/rumendamyanov/go-feed)
+[![Go Report Card](https://goreportcard.com/badge/github.com/rumendamyanov/go-feed?)](https://goreportcard.com/report/github.com/rumendamyanov/go-feed)
+[![Go Reference](https://pkg.go.dev/badge/github.com/rumendamyanov/go-feed.svg)](https://pkg.go.dev/github.com/rumendamyanov/go-feed)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/rumendamyanov/go-feed/blob/master/LICENSE.md)
 
 A framework-agnostic Go module for generating RSS and Atom feeds. Inspired by [php-feed](https://github.com/RumenDamyanov/php-feed), this package works seamlessly with any Go web framework including Gin, Echo, Fiber, Chi, and standard net/http.
 
@@ -20,7 +26,8 @@ A framework-agnostic Go module for generating RSS and Atom feeds. Inspired by [p
 - 📖 [Installation](#installation)
 - 🚀 [Usage Examples](#usage)
 - 🔧 [Framework Adapters](#framework-adapters)
-- 📚 [Documentation Wiki](https://github.com/rumendamyanov/go-feed/wiki)
+- � [Working Examples](#working-examples)
+- �📚 [Documentation Wiki](https://github.com/rumendamyanov/go-feed/wiki)
 - 🧪 [Testing & Development](#testing--development)
 - 🤝 [Contributing](https://github.com/rumendamyanov/go-feed/blob/master/CONTRIBUTING.md)
 - 🔒 [Security Policy](https://github.com/rumendamyanov/go-feed/blob/master/SECURITY.md)
@@ -297,6 +304,34 @@ f.AddItems([]feed.Item{
     {Title: "Post 2", Link: "https://example.com/post2"},
 })
 ```
+
+## Working Examples
+
+The [`examples/`](examples/) directory contains complete, runnable applications:
+
+### Framework Examples
+
+Located in [`examples/frameworks/`](examples/frameworks/), each with its own module:
+
+| Framework | Port | Run Command | Features |
+|-----------|------|-------------|----------|
+| **Gin** | `:8080` | `cd examples/frameworks/gin && go run main.go` | Clean API, middleware support |
+| **Echo** | `:8081` | `cd examples/frameworks/echo && go run main.go` | Performance-focused, middleware ecosystem |
+| **Fiber** | `:8082` | `cd examples/frameworks/fiber && go run main.go` | Express-inspired, fast HTTP engine |
+| **Chi** | `:8083` | `cd examples/frameworks/chi && go run main.go` | Lightweight router, auto-detection middleware |
+
+### Basic Examples
+
+- [`examples/basic/`](examples/basic/) - Simple RSS/Atom generation
+- [`examples/complete/`](examples/complete/) - Advanced features demonstration
+
+Each example includes:
+
+- 📡 RSS 2.0 feeds (`/feed.xml`)
+- ⚛️ Atom 1.0 feeds (`/atom.xml`)
+- 🔄 Multi-format endpoints (`/feed?format=rss|atom`)
+- 📖 Interactive HTML browsers
+- 🎯 Framework-specific features
 
 ## Documentation
 
