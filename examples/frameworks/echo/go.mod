@@ -1,4 +1,4 @@
-module gin-example
+module echo-example
 
 go 1.23.0
 
@@ -6,8 +6,8 @@ toolchain go1.23.6
 
 require (
 	github.com/labstack/echo/v4 v4.12.0
-	github.com/rumendamyanov/go-feed v1.0.0
-	github.com/rumendamyanov/go-feed/adapters/echo v0.0.0-20250801144943-e24fced1544a
+	go.rumenx.com/feed v1.0.0
+	go.rumenx.com/feed/adapters/echo v0.0.0-20250801144943-e24fced1544a
 )
 
 require (
@@ -24,4 +24,6 @@ require (
 	golang.org/x/time v0.5.0 // indirect
 )
 
-replace github.com/rumendamyanov/go-feed => ../../..
+replace go.rumenx.com/feed => ../../..
+
+replace go.rumenx.com/feed/adapters/echo => ../../../adapters/echo

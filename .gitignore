@@ -23,10 +23,13 @@ go.work
 
 # macOS
 .DS_Store
+**/.DS_Store
 
 # Coverage reports
 coverage.html
 coverage.out
+**/coverage.html
+**/coverage.out
 
 # Temporary files
 *.tmp
@@ -42,7 +45,22 @@ coverage.out
 # Build artifacts
 /bin/
 /dist/
+**/bin/
+**/dist/
+**/*.exe
+**/*.dll
+**/*.so
+**/*.dylib
 
 # Miscellaneous
 wiki/
 docs/
+**/.env
+**/*.tmp
+**/*.swp
+**/*.swo
+**/*.log
+
+# Compiled example binaries
+examples/frameworks/**/*-example
+examples/frameworks/**/example-*

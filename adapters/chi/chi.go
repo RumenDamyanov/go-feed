@@ -3,7 +3,7 @@ package chi
 import (
 	"net/http"
 
-	"github.com/rumendamyanov/go-feed"
+	"go.rumenx.com/feed"
 )
 
 // FeedGenerator is a function that generates a feed

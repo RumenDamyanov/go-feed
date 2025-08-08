@@ -1,5 +1,3 @@
-module github.com/rumendamyanov/go-feed
+module go.rumenx.com/feed
 
 go 1.22
-
-require ()

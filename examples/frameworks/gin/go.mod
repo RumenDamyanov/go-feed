@@ -2,10 +2,12 @@ module example-gin
 
 go 1.23.0
 
+toolchain go1.23.6
+
 require (
 	github.com/gin-gonic/gin v1.10.0
-	github.com/rumendamyanov/go-feed v1.0.0
-	github.com/rumendamyanov/go-feed/adapters/gin v0.0.0-20250802114127-c47e6ddd5195
+	go.rumenx.com/feed v1.0.0
+	go.rumenx.com/feed/adapters/gin v1.0.0
 )
 
 require (
@@ -37,6 +39,6 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 
-replace github.com/rumendamyanov/go-feed => ../../../
+replace go.rumenx.com/feed => ../../../
 
-replace github.com/rumendamyanov/go-feed/adapters/gin => ../../../adapters/gin
+replace go.rumenx.com/feed/adapters/gin => ../../../adapters/gin

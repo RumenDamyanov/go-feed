@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/rumendamyanov/go-feed"
+	"go.rumenx.com/feed"
 )
 
 // Simulate some blog posts

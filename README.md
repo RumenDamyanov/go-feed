@@ -4,8 +4,8 @@
 ![CodeQL](https://github.com/rumendamyanov/go-feed/actions/workflows/github-code-scanning/codeql/badge.svg)
 ![Dependabot](https://github.com/rumendamyanov/go-feed/actions/workflows/dependabot/dependabot-updates/badge.svg)
 [![codecov](https://codecov.io/gh/rumendamyanov/go-feed/branch/master/graph/badge.svg)](https://codecov.io/gh/rumendamyanov/go-feed)
-[![Go Report Card](https://goreportcard.com/badge/github.com/rumendamyanov/go-feed?)](https://goreportcard.com/report/github.com/rumendamyanov/go-feed)
-[![Go Reference](https://pkg.go.dev/badge/github.com/rumendamyanov/go-feed.svg)](https://pkg.go.dev/github.com/rumendamyanov/go-feed)
+[![Go Report Card](https://goreportcard.com/badge/go.rumenx.com/feed?)](https://goreportcard.com/report/go.rumenx.com/feed)
+[![Go Reference](https://pkg.go.dev/badge/go.rumenx.com/feed.svg)](https://pkg.go.dev/go.rumenx.com/feed)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/rumendamyanov/go-feed/blob/master/LICENSE.md)
 
 A framework-agnostic Go module for generating RSS and Atom feeds. Inspired by [php-feed](https://github.com/RumenDamyanov/php-feed), this package works seamlessly with any Go web framework including Gin, Echo, Fiber, Chi, and standard net/http.
@@ -27,7 +27,7 @@ A framework-agnostic Go module for generating RSS and Atom feeds. Inspired by [p
 - 🚀 [Usage Examples](#usage)
 - 🔧 [Framework Adapters](#framework-adapters)
 - � [Working Examples](#working-examples)
-- �📚 [Documentation Wiki](https://github.com/rumendamyanov/go-feed/wiki)
+- 📚 [Documentation Wiki](https://github.com/rumendamyanov/go-feed/wiki)
 - 🧪 [Testing & Development](#testing--development)
 - 🤝 [Contributing](https://github.com/rumendamyanov/go-feed/blob/master/CONTRIBUTING.md)
 - 🔒 [Security Policy](https://github.com/rumendamyanov/go-feed/blob/master/SECURITY.md)
@@ -39,7 +39,7 @@ A framework-agnostic Go module for generating RSS and Atom feeds. Inspired by [p
 ### Core Library
 
 ```bash
-go get github.com/rumendamyanov/go-feed
+go get go.rumenx.com/feed
 ```
 
 ### Framework Adapters (Optional)
@@ -48,16 +48,16 @@ Each framework adapter is a separate module. Install only what you need:
 
 ```bash
 # For Gin
-go get github.com/rumendamyanov/go-feed/adapters/gin
+go get go.rumenx.com/feed/adapters/gin
 
 # For Echo  
-go get github.com/rumendamyanov/go-feed/adapters/echo
+go get go.rumenx.com/feed/adapters/echo
 
 # For Fiber  
-go get github.com/rumendamyanov/go-feed/adapters/fiber
+go get go.rumenx.com/feed/adapters/fiber
 
 # For Chi
-go get github.com/rumendamyanov/go-feed/adapters/chi
+go get go.rumenx.com/feed/adapters/chi
 ```
 
 ## Usage
@@ -71,7 +71,7 @@ import (
     "net/http"
     "time"
 
-    "github.com/rumendamyanov/go-feed"
+    "go.rumenx.com/feed"
 )
 
 func feedHandler(w http.ResponseWriter, r *http.Request) {
@@ -163,7 +163,7 @@ package main
 
 import (
     "github.com/gin-gonic/gin"
-    "github.com/rumendamyanov/go-feed/adapters/gin"
+    "go.rumenx.com/feed/adapters/gin"
 )
 
 func main() {
@@ -190,7 +190,7 @@ package main
 
 import (
     "github.com/gofiber/fiber/v2"
-    "github.com/rumendamyanov/go-feed/adapters/fiber"
+    "go.rumenx.com/feed/adapters/fiber"
 )
 
 func main() {
@@ -217,7 +217,7 @@ package main
 
 import (
     "github.com/labstack/echo/v4"
-    "github.com/rumendamyanov/go-feed/adapters/echo"
+    "go.rumenx.com/feed/adapters/echo"
 )
 
 func main() {
@@ -246,7 +246,7 @@ import (
     "net/http"
 
     "github.com/go-chi/chi/v5"
-    "github.com/rumendamyanov/go-feed/adapters/chi"
+    "go.rumenx.com/feed/adapters/chi"
 )
 
 func main() {

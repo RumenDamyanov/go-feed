@@ -5,8 +5,8 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/rumendamyanov/go-feed"
-	ginadapter "github.com/rumendamyanov/go-feed/adapters/gin"
+	"go.rumenx.com/feed"
+	ginadapter "go.rumenx.com/feed/adapters/gin"
 )
 
 func main() {
