@@ -1,10 +1,10 @@
-module github.com/rumendamyanov/go-feed/adapters/gin
+module go.rumenx.com/feed/adapters/gin
 
 go 1.23.0
 
 require (
 	github.com/gin-gonic/gin v1.10.0
-	github.com/rumendamyanov/go-feed v1.0.0
+	go.rumenx.com/feed v1.0.0
 )
 
 require (
@@ -36,4 +36,4 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 
-replace github.com/rumendamyanov/go-feed => ../../
+replace go.rumenx.com/feed => ../../

@@ -28,7 +28,7 @@ cd echo && go run main.go
 cd fiber && go run main.go
 
 # Chi example
-cd chi && go run main.go
+```bash
 ```
 
 ## Running All Examples Simultaneously
@@ -42,7 +42,7 @@ cd gin && go run main.go
 # Terminal 2: Echo on :8081  
 cd echo && go run main.go
 
-# Terminal 3: Fiber on :8082
+```bash
 cd fiber && go run main.go
 
 # Terminal 4: Chi on :8083
@@ -50,10 +50,11 @@ cd chi && go run main.go
 ```
 
 Then visit:
-- 🍸 **Gin**: http://localhost:8080
-- 📡 **Echo**: http://localhost:8081  
-- ⚡ **Fiber**: http://localhost:8082
-- 🔀 **Chi**: http://localhost:8083
+
+- 🍸 **Gin**: <http://localhost:8080>
+- 📡 **Echo**: <http://localhost:8081>
+- ⚡ **Fiber**: <http://localhost:8082>
+- 🔀 **Chi**: <http://localhost:8083>
 
 ## Common Features
 
@@ -70,25 +71,29 @@ All examples demonstrate:
 ## Framework-Specific Features
 
 ### Gin (`:8080`) 🍸
+
 - Gin's lightweight middleware
-- JSON binding capabilities  
+- JSON binding capabilities
 - High-performance HTTP routing
 - Clean and minimal API
 
 ### Echo (`:8081`) 📡
+
 - Echo's middleware ecosystem
 - Built-in request/response binding
 - Optimized for performance
 - Comprehensive middleware stack
 
-### Fiber (`:8082`) ⚡ 
+### Fiber (`:8082`) ⚡
+
 - Express.js-inspired API
 - Zero memory allocation router
 - Fastest HTTP engine
 - Rich middleware collection
 
 ### Chi (`:8083`) 🔀
-- **🎯 Unique: Auto-detection middleware** 
+
+- **🎯 Unique: Auto-detection middleware**
 - Composable middleware design
 - Request ID tracking
 - Lightweight and minimal

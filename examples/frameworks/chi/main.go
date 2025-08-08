@@ -7,8 +7,8 @@ import (
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
-	"github.com/rumendamyanov/go-feed"
-	chiadapter "github.com/rumendamyanov/go-feed/adapters/chi"
+	"go.rumenx.com/feed"
+	chiadapter "go.rumenx.com/feed/adapters/chi"
 )
 
 func main() {

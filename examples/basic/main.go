@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/rumendamyanov/go-feed"
+	"go.rumenx.com/feed"
 )
 
 func feedHandler(w http.ResponseWriter, r *http.Request) {

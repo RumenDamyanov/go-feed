@@ -99,7 +99,7 @@ func (f *Feed) Atom() ([]byte, error) {
 		Rights:  f.copyright,
 		Generator: &AtomGenerator{
 			Text:    "go-feed",
-			URI:     "https://github.com/rumendamyanov/go-feed",
+			URI:     "https://go.rumenx.com/feed",
 			Version: "1.0",
 		},
 	}

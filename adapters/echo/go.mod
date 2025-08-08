@@ -1,10 +1,10 @@
-module github.com/rumendamyanov/go-feed/adapters/echo
+module go.rumenx.com/feed/adapters/echo
 
 go 1.23.0
 
 require (
 	github.com/labstack/echo/v4 v4.12.0
-	github.com/rumendamyanov/go-feed v1.0.0
+	go.rumenx.com/feed v1.0.0
 )
 
 require (
@@ -19,4 +19,4 @@ require (
 	golang.org/x/text v0.23.0 // indirect
 )
 
-replace github.com/rumendamyanov/go-feed => ../../
+replace go.rumenx.com/feed => ../../

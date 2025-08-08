@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/rumendamyanov/go-feed"
+	"go.rumenx.com/feed"
 )
 
 // FeedGenerator is a function that generates a feed

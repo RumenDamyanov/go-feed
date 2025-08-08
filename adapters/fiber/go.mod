@@ -1,10 +1,10 @@
-module github.com/rumendamyanov/go-feed/adapters/fiber
+module go.rumenx.com/feed/adapters/fiber
 
 go 1.22
 
 require (
 	github.com/gofiber/fiber/v2 v2.52.5
-	github.com/rumendamyanov/go-feed v1.0.0
+	go.rumenx.com/feed v1.0.0
 )
 
 require (
@@ -21,4 +21,4 @@ require (
 	golang.org/x/sys v0.15.0 // indirect
 )
 
-replace github.com/rumendamyanov/go-feed => ../../
+replace go.rumenx.com/feed => ../../

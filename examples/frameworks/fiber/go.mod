@@ -6,8 +6,8 @@ toolchain go1.23.6
 
 require (
 	github.com/gofiber/fiber/v2 v2.52.5
-	github.com/rumendamyanov/go-feed v1.0.0
-	github.com/rumendamyanov/go-feed/adapters/fiber v0.0.0-20250801144943-e24fced1544a
+	go.rumenx.com/feed v1.0.0
+	go.rumenx.com/feed/adapters/fiber v0.0.0-20250801144943-e24fced1544a
 )
 
 require (
@@ -24,4 +24,6 @@ require (
 	golang.org/x/sys v0.15.0 // indirect
 )
 
-replace github.com/rumendamyanov/go-feed => ../../..
+replace go.rumenx.com/feed => ../../..
+
+replace go.rumenx.com/feed/adapters/fiber => ../../../adapters/fiber

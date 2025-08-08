@@ -7,8 +7,8 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/fiber/v2/middleware/recover"
-	"github.com/rumendamyanov/go-feed"
-	fiberadapter "github.com/rumendamyanov/go-feed/adapters/fiber"
+	"go.rumenx.com/feed"
+	fiberadapter "go.rumenx.com/feed/adapters/fiber"
 )
 
 func main() {

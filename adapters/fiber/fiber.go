@@ -2,7 +2,7 @@ package fiber
 
 import (
 	"github.com/gofiber/fiber/v2"
-	"github.com/rumendamyanov/go-feed"
+	"go.rumenx.com/feed"
 )
 
 // FeedGenerator is a function that generates a feed
