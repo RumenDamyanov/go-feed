@@ -5,7 +5,7 @@ go 1.22
 toolchain go1.23.6
 
 require (
-	github.com/gofiber/fiber/v2 v2.52.9
+	github.com/gofiber/fiber/v2 v2.52.11
 	go.rumenx.com/feed v1.0.0
 	go.rumenx.com/feed/adapters/fiber v0.0.0-20250801144943-e24fced1544a
 )
