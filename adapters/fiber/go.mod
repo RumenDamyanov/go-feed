@@ -3,7 +3,7 @@ module go.rumenx.com/feed/adapters/fiber
 go 1.22
 
 require (
-	github.com/gofiber/fiber/v2 v2.52.13
+	github.com/gofiber/fiber/v2 v2.52.14
 	go.rumenx.com/feed v1.0.0
 )
 
