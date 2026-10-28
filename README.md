@@ -42,6 +42,8 @@ A framework-agnostic Go module for generating RSS and Atom feeds. Inspired by [p
 go get go.rumenx.com/feed
 ```
 
+Build with **Go 1.26.10+** or **1.27.3+**. See [SECURITY.md](SECURITY.md).
+
 ### Framework Adapters (Optional)
 
 Each framework adapter is a separate module. Install only what you need:
