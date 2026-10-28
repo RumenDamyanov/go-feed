@@ -3,7 +3,7 @@ module fiber-example
 go 1.26.10
 
 require (
-	github.com/gofiber/fiber/v2 v2.52.13
+	github.com/gofiber/fiber/v2 v2.52.14
 	go.rumenx.com/feed v1.0.0
 	go.rumenx.com/feed/adapters/fiber v0.0.0-20250801144943-e24fced1544a
 )
