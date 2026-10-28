@@ -3,7 +3,7 @@ module chi-example
 go 1.26.10
 
 require (
-	github.com/go-chi/chi/v5 v5.2.4
+	github.com/go-chi/chi/v5 v5.4.0
 	go.rumenx.com/feed v1.0.0
 	go.rumenx.com/feed/adapters/chi v0.0.0-20250801144943-e24fced1544a
 )
